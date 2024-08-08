@@ -1,0 +1,53 @@
+div {
+    width: 800px;
+    margin: 0 auto;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  .lead-container{
+    margin-left: 35vw;
+  }
+
+   form{
+    margin-left: 40vw;
+  }
+
+  table{
+    margin-left: 20vw;
+  }
+
+  .btn{
+    margin: 0vw 2vw;
+  }
