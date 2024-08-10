@@ -42,16 +42,17 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const captchaToken = await executeRecaptcha('login');
-    if (!captchaToken) {
-      alert('Please complete the CAPTCHA');
-      return;
-    }
+    // const captchaToken = await executeRecaptcha('login');
+    // if (!captchaToken) {
+    //   alert('Please complete the CAPTCHA');
+    //   return;
+    // }
+    console.log(password);
     try {
       const res = await axios.post('http://localhost:5001/users/login', {
         username,
         password,
-        captcha: captchaToken,
+        // captcha: captchaToken,
       });
       localStorage.setItem('token', res.data.token);
       navigate('/leads');

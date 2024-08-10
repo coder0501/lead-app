@@ -29,10 +29,11 @@ const ResetPassword = () => {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <button type="submit">Reset Password</button>
+      <button className="btn" type="submit">Reset Password</button>
       {message && <p>{message}</p>}
     </form>
   );
 };
 
 export default ResetPassword;
+

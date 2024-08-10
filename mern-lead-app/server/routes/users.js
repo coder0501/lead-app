@@ -6,6 +6,7 @@ const User = require('../models/User');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 // require('../dotenv').config();
+const axios = require('axios');
 
 router.post('/signup', async (req, res) => {
   const { name, email, username, password } = req.body;
@@ -39,29 +40,35 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const { username, password, captcha } = req.body;
+  const { username, password } = req.body;
 
   try {
-    // Verify reCAPTCHA v3 token
-    const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify`, null, {
-      params: {
-        secret: process.env.RECAPTCHA_SECRET_KEY,
-        response: captcha,
-      },
-    });
+    // // Verify reCAPTCHA v3 token
+    // const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify`, null, {
+    //   params: {
+    //     secret: process.env.RECAPTCHA_SECRET_KEY,
+    //     response: captcha,
+    //   },
+    // });
 
-    if (!response.data.success || response.data.score < 0.5) {
-      return res.status(400).json({ message: 'reCAPTCHA verification failed.' });
-    }
+    // if (!response.data.success || response.data.score < 0.5) {
+    //   return res.status(400).json({ message: 'reCAPTCHA verification failed.' });
+    // }
 
     // Your authentication logic
     // Authenticate user (this is just a placeholder)
-    const user = await User.findOne({ username });
-    if (!user || user.password !== password) {
+    const user = await User.findOne({ username:  username});
+    console.log(user); //user 
+    if (!user ) {
       return res.status(401).json({ message: 'Invalid username or password.' });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    // Check the user object and password property
+    console.log('User object:', user);
+    console.log('User password:', user.password);
+    
+    const isMatch =  bcrypt.compare(password, user.password);
+    console.log("isMatch", isMatch);
     if (!isMatch) return res.status(400).json({ message: 'Invalid username or password' });
 
     const token = jwt.sign({ id: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
@@ -95,10 +102,10 @@ router.post('/forgot-password', async (req, res) => {
     console.log("forgot");
 
     // Send email with reset link
-    const resetUrl = `http://localhost:3000/reset-password/${resetToken}`;
+    const resetUrl = `http://localhost:5173/reset-password/${resetToken}`;
     const mailOptions = {
       to: email,
-      from: 'lead-auth@gmail.com',
+      from: process.env.EMAIL_USER,
       subject: 'Password Reset Request',
       text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n
       Please click on the following link, or paste this into your browser, to complete the process:\n\n
@@ -106,6 +113,7 @@ router.post('/forgot-password', async (req, res) => {
       If you did not request this, please ignore this email and your password will remain unchanged.\n`,
     };
 
+    // console.log(process.env.EMAIL_USER,process.env.EMAIL_PASS)
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
