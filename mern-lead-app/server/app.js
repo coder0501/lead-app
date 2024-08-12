@@ -67,8 +67,3 @@ app.get("/", (req, res) => {
 
 module.exports = app;
 
-
-<<<<<<< HEAD
-=======
-    
->>>>>>> 0859ca516e70e14b93a31a98f33c04ef66e0f0de
