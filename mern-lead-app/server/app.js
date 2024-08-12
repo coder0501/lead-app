@@ -16,7 +16,7 @@ dotenv.config();
 
 app.use(cors(
   {
-    origin: [""],
+    origin: ["https://lead-app-ru5j.vercel.app/"],
     methods: ["POST", "GET"],
     credentials: true
   }
