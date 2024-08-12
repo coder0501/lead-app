@@ -23,8 +23,8 @@ app.use(cors(
 ));
 
 const app = express();
-const PORT = process.env.PORT || 5001;
-app.set('port', PORT);
+// const PORT = process.env.PORT || 5001;
+// app.set('port', PORT);
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -60,8 +60,11 @@ app.get("/", (req, res) => {
   res.json("Hello");
 })
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
+// });
 
 module.exports = app;
+
+
+    

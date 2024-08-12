@@ -45,7 +45,7 @@ const Signup = () => {
     }
     return "";
   };
-  
+
   axios.defaults.withCredentials = true;
 
   const handleSubmit = async (e) => {
@@ -57,57 +57,63 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post("https://lead-app-b71y.vercel.app/users/signup", signupData);
+      const response = await axios.post(
+        "https://lead-app-rhu2.vercel.app/users/signup",
+        signupData
+      );
       if (response.status === 201) {
         navigate("/login");
       }
     } catch (err) {
       console.error("Error signing up:", err);
-      setError(err.response?.data?.error || "Error signing up. Please try again.");
+      setError(
+        err.response?.data?.error || "Error signing up. Please try again."
+      );
     }
   };
 
   return (
     <div className="signup-form">
-    <div className="signup-container">
-    
-      <h2>Signup</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form className="signup-form1" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          name="name"
-          value={signupData.name}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={signupData.email}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Username"
-          name="username"
-          value={signupData.username}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={signupData.password}
-          onChange={handleInputChange}
-          required
-        />
-        <button type="submit" className="btn">Signup</button>
-      </form>
+      <div className="signup-container">
+        <h2>Signup</h2>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <form className="signup-form1" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            value={signupData.name}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            value={signupData.email}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Username"
+            name="username"
+            value={signupData.username}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={signupData.password}
+            onChange={handleInputChange}
+            required
+          />
+          <button type="submit" className="btn">
+            Signup
+          </button>
+        </form>
       </div>
     </div>
   );

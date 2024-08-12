@@ -12,7 +12,7 @@ const ForgotPassword = () => {
     e.preventDefault();
     try {
         console.log('forgot')
-      const res = await axios.post('https://lead-app-b71y.vercel.app/users/forgot-password', { email });
+      const res = await axios.post('https://lead-app-rhu2.vercel.app/users/forgot-password', { email });
       setMessage(res.data.message);
     } catch (err) {
       console.error(err);

@@ -50,7 +50,7 @@ axios.defaults.withCredentials = true;
     // }
     console.log(password);
     try {
-      const res = await axios.post('https://lead-app-b71y.vercel.app/users/login', {
+      const res = await axios.post('https://lead-app-rhu2.vercel.app/users/login', {
         username,
         password,
         // captcha: captchaToken,

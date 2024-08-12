@@ -12,7 +12,7 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`https://lead-app-b71y.vercel.app/users/reset-password/${token}`, { password });
+      const res = await axios.post(`https://lead-app-rhu2.vercel.app/users/reset-password/${token}`, { password });
       setMessage(res.data.message);
     } catch (err) {
       console.error(err);
