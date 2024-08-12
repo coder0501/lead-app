@@ -14,13 +14,13 @@ const User = require('./models/User');
 
 dotenv.config();
 
-// app.use(cors(
-//   {
-//     origin: [""],
-//     methods: ["POST", "GET"],
-//     credentials: true
-//   }
-// ));
+app.use(cors(
+  {
+    origin: [""],
+    methods: ["POST", "GET"],
+    credentials: true
+  }
+));
 
 const app = express();
 const PORT = process.env.PORT || 5001;

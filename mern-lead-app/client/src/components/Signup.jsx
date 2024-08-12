@@ -45,6 +45,8 @@ const Signup = () => {
     }
     return "";
   };
+  
+  axios.defaults.withCredentials = true;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,7 +57,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5001/users/signup", signupData);
+      const response = await axios.post("https://lead-app-b71y.vercel.app/users/signup", signupData);
       if (response.status === 201) {
         navigate("/login");
       }

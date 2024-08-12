@@ -6,12 +6,13 @@ import './Login.css';
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-
+  // http://localhost:5001
+  axios.defaults.withCredentials = true;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
         console.log('forgot')
-      const res = await axios.post('http://localhost:5001/users/forgot-password', { email });
+      const res = await axios.post('https://lead-app-b71y.vercel.app/users/forgot-password', { email });
       setMessage(res.data.message);
     } catch (err) {
       console.error(err);

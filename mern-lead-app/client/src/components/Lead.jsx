@@ -19,10 +19,11 @@ const Lead = () => {
   useEffect(() => {
     fetchLeads();
   }, []);
+  axios.defaults.withCredentials = true;
 
   const fetchLeads = async () => {
     try {
-      const res = await axios.get("http://localhost:5001/leads");
+      const res = await axios.get("https://lead-app-b71y.vercel.app/leads");
       setLeads(res.data);
     } catch (error) {
       console.error('Error fetching leads:', error);
@@ -34,7 +35,7 @@ const Lead = () => {
       fetchLeads();
     } else {
       try {
-        const res = await axios.get(`http://localhost:5001/leads?search=${search}`);
+        const res = await axios.get(`https://lead-app-b71y.vercel.app/leads?search=${search}`);
         setLeads(res.data);
       } catch (error) {
         console.error('Error searching leads:', error);
@@ -45,7 +46,7 @@ const Lead = () => {
   const handleSort = async (sortField) => {
     setSort(sortField);
     try {
-      const res = await axios.get(`http://localhost:5001/leads?sort=${sortField}`);
+      const res = await axios.get(`https://lead-app-b71y.vercel.app/leads?sort=${sortField}`);
       setLeads(res.data);
     } catch (error) {
       console.error('Error sorting leads:', error);
@@ -70,7 +71,7 @@ const Lead = () => {
 
   const handleCreateLead = async () => {
     try {
-      await axios.post("http://localhost:5001/leads", leadData);
+      await axios.post("https://lead-app-b71y.vercel.app/leads", leadData);
       fetchLeads();
       setLeadData({ name: "", number: "", email: "", product: "" });
     } catch (error) {
@@ -85,7 +86,7 @@ const Lead = () => {
 
   const handleUpdateLead = async (id) => {
     try {
-      await axios.put(`http://localhost:5001/leads/${id}`, editingLeadData);
+      await axios.put(`https://lead-app-b71y.vercel.app/leads/${id}`, editingLeadData);
       setEditingLeadId(null);
       fetchLeads();
     } catch (error) {
@@ -100,7 +101,7 @@ const Lead = () => {
 
   const handleDeleteLead = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/leads/${id}`);
+      await axios.delete(`https://lead-app-b71y.vercel.app/leads/${id}`);
       fetchLeads();
     } catch (error) {
       console.error('Error deleting lead:', error);
