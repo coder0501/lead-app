@@ -14,6 +14,9 @@ const User = require('./models/User');
 
 dotenv.config();
 
+
+const app = express();
+
 app.use(cors(
   {
     origin: ["https://lead-app-ru5j.vercel.app/"],
@@ -21,8 +24,6 @@ app.use(cors(
     credentials: true
   }
 ));
-
-const app = express();
 // const PORT = process.env.PORT || 5001;
 // app.set('port', PORT);
 
@@ -67,4 +68,3 @@ app.get("/", (req, res) => {
 module.exports = app;
 
 
-    
