@@ -14,6 +14,14 @@ const User = require('./models/User');
 
 dotenv.config();
 
+// app.use(cors(
+//   {
+//     origin: [""],
+//     methods: ["POST", "GET"],
+//     credentials: true
+//   }
+// ));
+
 const app = express();
 const PORT = process.env.PORT || 5001;
 app.set('port', PORT);
@@ -28,8 +36,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-mongoose.connect('mongodb://localhost:27017/mern-lead-app');
+// 'mongodb://localhost:27017/mern-lead-app'
+// process.env.MONGO_URL
+mongoose.connect('mongodb+srv://tiwariabhi0501:tiwariabhi.0501@lead-app.4zjzc.mongodb.net/lead-app?retryWrites=true&w=majority&appName=lead-app')
+        .then((e) => console.log("MongoDB Connected"));
 
 app.use('/users', usersRouter);
 app.use('/leads', leadsRouter);
