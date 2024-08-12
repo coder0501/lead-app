@@ -56,6 +56,10 @@ app.use((err, req, res, next) => {
   res.json({ error: err.message });
 });
 
+app.get("/", (req, res) => {
+  res.json("Hello");
+})
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
