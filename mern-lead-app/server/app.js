@@ -14,16 +14,18 @@ const User = require('./models/User');
 
 dotenv.config();
 
-
 const app = express();
 
 app.use(cors(
   {
-    origin: ["https://lead-app-ru5j.vercel.app"],
+    origin: ["http://localhost:5173/"],
     methods: ["POST", "GET"],
     credentials: true
   }
 ));
+
+app.options('*', cors()); // Enable preflight for all routes
+
 // const PORT = process.env.PORT || 5001;
 // app.set('port', PORT);
 
@@ -37,9 +39,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// 'mongodb://localhost:27017/mern-lead-app'
+// mongodb+srv://tiwariabhi0501:tiwariabhi.0501@lead-app.4zjzc.mongodb.net/lead-app?retryWrites=true&w=majority&appName=lead-app
 // process.env.MONGO_URL
-mongoose.connect('mongodb+srv://tiwariabhi0501:tiwariabhi.0501@lead-app.4zjzc.mongodb.net/lead-app?retryWrites=true&w=majority&appName=lead-app')
+mongoose.connect('mongodb://localhost:27017/mern-lead-app')
         .then((e) => console.log("MongoDB Connected"));
 
 app.use('/users', usersRouter);
@@ -67,8 +69,3 @@ app.get("/", (req, res) => {
 
 module.exports = app;
 
-
-<<<<<<< HEAD
-=======
-    
->>>>>>> 0859ca516e70e14b93a31a98f33c04ef66e0f0de
